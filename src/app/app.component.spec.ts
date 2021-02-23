@@ -1,7 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+
+  let fixture: ComponentFixture<AppComponent>;
+  let app: AppComponent;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -10,22 +14,25 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
+  beforeEach(() =>{
+    fixture = TestBed.createComponent(AppComponent); 
+    app = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Testing-Sandbox'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Testing-Sandbox');
-  });
+  it('should have a heading', () =>{
+    const heading = fixture.debugElement.nativeElement.querySelector('#heading');
+    expect(heading).toBeTruthy();
+  })
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('Testing-Sandbox app is running!');
-  });
+  it('should have a heading that matches the page title', () => {
+    const title : string = "Testing Sandbox";
+    const heading = fixture.debugElement.nativeElement.querySelector('#heading');
+    expect(heading.textContent).toEqual(title);
+  })
+
 });
