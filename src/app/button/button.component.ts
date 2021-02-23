@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoggerService } from '../logger.service';
 
 @Component({
   selector: 'app-button',
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
 
-  constructor() { }
+  constructor(private logger: LoggerService) { }
 
   ngOnInit(): void {
   }
 
   handleClick(): void{
-    console.log('Click...')
+    this.logger.log('Button clicked...')
   }
 }

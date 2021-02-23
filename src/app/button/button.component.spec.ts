@@ -42,4 +42,5 @@ describe('ButtonComponent', () => {
     
     expect(component.handleClick).toHaveBeenCalled();
   }))
+
 });
