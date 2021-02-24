@@ -23,7 +23,7 @@ describe('ButtonComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be a button', () => {
+  it('should be a button', () => { 
     const button = fixture.debugElement.query(By.css('button'));
     expect(button).toBeTruthy();
   })
@@ -42,4 +42,5 @@ describe('ButtonComponent', () => {
     
     expect(component.handleClick).toHaveBeenCalled();
   }))
+
 });
