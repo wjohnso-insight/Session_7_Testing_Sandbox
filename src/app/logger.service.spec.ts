@@ -3,7 +3,12 @@ import { TestBed } from '@angular/core/testing';
 import { LoggerService } from './logger.service';
 
 describe('LoggerService', () => {
-  let service: LoggerService;
+  let service: LoggerService; //Calling the actual service and not a stub
+
+   /* 
+      The reason we actually test on a real instance of LoggerService is because we are testing that unit. If we were testing a unit that uses the logger service, 
+      we would mock 'logger', to keep that unit isolated and ensuring that any failures are directly related to that unit and not being polluted by an error in the logger service
+   */  
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -16,16 +21,9 @@ describe('LoggerService', () => {
 
   it('should log input to console', () => {
 
-    const logger = new LoggerService(); //Calling the actual service and not a stub
-
-    /* 
-      The reason we actually test on a real instance of LoggerService is because we are testing that unit. If we were testing a unit that uses the logger service, 
-      we would mock 'logger', to keep that unit isolated and ensuring that any failures are directly related to that unit and not being polluted by an error in the logger service
-     */
-    
     spyOn(console, 'log');
 
-    logger.log('Test')
+    service.log('Test')
     expect(console.log).toHaveBeenCalledWith('Test');
     
   })
