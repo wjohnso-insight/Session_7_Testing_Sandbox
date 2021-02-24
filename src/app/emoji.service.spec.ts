@@ -15,17 +15,15 @@ describe('EmojiService', () => {
   });
 
   it('should have returned an emoji', () => {
-    
     const emoji = service.getEmoji('smile');
-    expect(emoji).toEqual("😀");
+    expect(emoji).toBe("😀");
     
   })
 
   it('should have logged to the console once', () => {
-
-    const logger = jasmine.createSpyObj('logger', ['log']) //Created spy object with baseName of 'logger' and a method of 'log'
-
-    service.getEmoji('smile');
+    const logger = jasmine.createSpyObj('LoggerService', ['log']) //Created spy object with baseName of 'LoggerService' and a method of 'log'
+    const emojiService = new EmojiService(logger); //Still don't understand this part???
+    emojiService.getEmoji('smile');
     expect(logger.log).toHaveBeenCalledTimes(1);
   })
 });
